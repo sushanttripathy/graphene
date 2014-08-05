@@ -12,8 +12,8 @@ To instantiate a Graph object and add details about nodes:
 ```python
 G = Graph()
 
-G.add_node(1, "a")
-G.add_node(2, "b")
+G.add_node(id=1, label="a")
+G.add_node(id="2", label = "b")
 G.add_node(3, "c")
 G.add_node(4, "d")
 G.add_node(5, "e")
