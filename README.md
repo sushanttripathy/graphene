@@ -27,7 +27,7 @@ G.add_edge(2, 4, 0.3)
 G.add_edge(4, 5)
 ```
 
-To load a graph from an adjacency matrix provided as a csv (excel style csv), where the first row contains the target node ids and the first column of subsequent rows contains the source node id and the [row x column] cell contains edge weight as a float. If nothing is specified, the edge is assumed absent
+To load a graph from an adjacency matrix provided as a csv (excel style csv), where the first row contains the target node ids and the first column of subsequent rows contains the source node id and the [row, column] cell contains edge weight as a float. If nothing is specified, the edge is assumed absent
 
 ```python
 G.load_adjacency_matrix_from_csv("path_to_file.csv")
