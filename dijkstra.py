@@ -2,18 +2,18 @@ __author__ = 'Sushant'
 
 from graph import Graph
 import threading
+from priority_dict import PriorityDict
 
 
 class Dijkstra(Graph):
-    def __init__(self, num_threads=0):
+    def __init__(self, num_threads=0, use_priority_queue=1):
         super(Dijkstra, self).__init__()
         self.shortest_paths = {}
         self.shortest_paths_guide = {}
         self.num_threads = num_threads
         if num_threads:
-            import threading
-
             self.lock = threading.Lock()
+        self.use_priority_queue = use_priority_queue
         return
 
     def get_node_with_minimum_distance(self, q, distance, indices):
@@ -31,21 +31,33 @@ class Dijkstra(Graph):
     def calculate_shortest_paths_from(self, source_id):
         distance = {}
         previous = {}
-        q = []
+        q = None
+        if self.use_priority_queue:
+            q = PriorityDict()
+        else:
+            q = []
         ind = []
         distance[source_id] = 0
         for x in self.nodes:
             if x is not source_id:
                 distance[x] = float("inf")
                 previous[x] = None
-            q.append(x)
-        while len(q):
-            u = self.get_node_with_minimum_distance(q, distance, ind)
-            index = ind.pop()
-            if type(index) is int:
-                del q[index]
+            if self.use_priority_queue:
+                q[x] = distance[x]
             else:
-                break
+                q.append(x)
+
+        while len(q):
+            u = None
+            if self.use_priority_queue:
+                u = q.pop_smallest()
+            else:
+                u = self.get_node_with_minimum_distance(q, distance, ind)
+                index = ind.pop()
+                if type(index) is int:
+                    del q[index]
+                else:
+                    break
 
             if isinstance(self.edges[u], dict):
                 for v in self.edges[u]:
@@ -54,7 +66,8 @@ class Dijkstra(Graph):
                         if alt < distance[v]:
                             distance[v] = alt
                             previous[v] = u
-
+                            if self.use_priority_queue:
+                                q[v] = distance[v]
         if not self.num_threads:
             self.shortest_paths[source_id] = distance
             self.shortest_paths_guide[source_id] = previous
@@ -80,6 +93,10 @@ class Dijkstra(Graph):
                     while len(th):
                         _t = th.pop()
                         _t.join()
+            if len(th):
+                while len(th):
+                    _t = th.pop()
+                    _t.join()
         return
 
     def get_shortest_path_length(self, source_id, target_id):
@@ -100,8 +117,10 @@ class Dijkstra(Graph):
                 return r
         return []
 
+
 """
-G = Dijkstra(10)
+G = Dijkstra(10, 1)
+
 G.add_edge(1, 2, 0.1)
 G.add_edge(1, 3, 0.3)
 G.add_edge(2, 3, 0.1)
@@ -115,5 +134,6 @@ print "Shortest paths calculation finished"
 print G.get_shortest_path_length(1, 4)
 print G.get_shortest_route(1, 4)
 """
+
 
 
