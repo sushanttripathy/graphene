@@ -12,8 +12,8 @@ To instantiate a Graph object and add details about nodes:
 ```python
 G = Graph()
 
-G.add_node(id=1, label="a")
-G.add_node(id="2", label = "b")
+G.add_node(node_id=1, node_label="a")
+G.add_node(node_id="2", node_label="b")
 G.add_node(3, "c")
 G.add_node(4, "d")
 G.add_node(5, "e")
@@ -22,7 +22,7 @@ G.add_node(5, "e")
 To add edges to the graph with edge weights ( a default weight of 1.0 is assumed if edge weight is not provided)
 
 ```python
-G.add_edge(source_id =1, target_id="2", edge_strength=0.1)
+G.add_edge(source_id=1, target_id="2", edge_strength=0.1)
 G.add_edge(2, 4, 0.3)
 G.add_edge(4, 5)
 ```
