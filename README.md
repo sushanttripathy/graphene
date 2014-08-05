@@ -9,6 +9,7 @@ The file graph.py contains the Graph object.
 
 To instantiate a Graph object and add details about nodes:
 
+'''python
 G = Graph()
 
 G.add_node(1, "a")
@@ -16,6 +17,7 @@ G.add_node(2, "b")
 G.add_node(3, "c")
 G.add_node(4, "d")
 G.add_node(5, "e")
+'''
 
 To add edges to the graph with edge weights ( a default weight of 1.0 is assumed if edge weight is not provided)
 
