@@ -36,7 +36,7 @@ G.load_adjacency_matrix_from_csv("path_to_file.csv")
 The classes Dijkstra and FloydWarshall are extended from Graph as the base class, so the same syntax for graph loading as shown above can be used.
 
 ```python
-D = Dijkstra(num_threads)
+D = Dijkstra(num_threads=8)
 ```
 If the num_threads parameter is not specified, it defaults to zero, essentially making the application a single threaded one. I would recommend using as many threads as there are processor cores.
 
