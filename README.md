@@ -74,6 +74,6 @@ F.calculate_all_shortest_paths()
 The shortest path length between source node and target node can be found as such:
 
 ```python
-F.get_shortest_path_length(source_id , target_id)
+print F.get_shortest_path_length(source_id , target_id)
 ```
 It is important to note that the Floyd-Warshall algorithm does not keep track of the shortest route (i.e. the nodes encountered on the shortest path) instead it concerns itself with only calculating the shortest path length. Further, it is an iterative algorithm with poor support for parallellization (hence no parallellization is implemented for it here). From my personal experience, the parallellized Dijkstra outperforms Floyd-Warshall when processing a 1000 node graph with around 500,000 edges.
