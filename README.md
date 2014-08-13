@@ -1,7 +1,7 @@
 graphene
 ========
 
-A python package for processing graphs, currently supports loading adjacency matrix from csv, shortest paths calculation using Floyd-Warshall and/or a parallelized implementation of Dijkstra's algorithm.
+A Python package for processing graphs, currently supports loading adjacency matrix from csv, shortest paths calculation using Floyd-Warshall and/or a parallelized implementation of Dijkstra's algorithm.
 
 Examples of usage are provided below.
 
