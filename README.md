@@ -50,6 +50,7 @@ Now to obtain the shortest route from source node to target node:
 ```python
 print D.get_shortest_route(source_id, target_id)
 ```
+
 This will return a list of the ids of all the nodes encountered on moving from source node to target node.
 
 To obtain the shortest path length:
@@ -57,3 +58,22 @@ To obtain the shortest path length:
 ```python
 print D.get_shortest_path_length(source_id, target_id)
 ```
+
+The Floyd-Warshall algorithm for finding the shortest paths between all node pairs within a graph is implemented through the FloydWarshall class which is also derived from the Graph base class.
+
+```python
+F = FloydWarshall() #instantiate the object
+```
+
+After loading the graph into the object using any of the graph loading techniques mentioned above we have to initiate the calculation of all shortest paths as follows:
+
+```python
+F.calculate_all_shortest_paths()
+```
+
+The shortest path length between source node and target node can be found as such:
+
+```python
+F.get_shortest_path_length(source_id , target_id)
+```
+It is important to note that the Floyd-Warshall algorithm does not keep track of the shortest route (i.e. the nodes encountered on the shortest path) instead it concerns itself with only calculating the shortest path length. Further, it is an iterative algorithm with poor support for parallellization (hence no parallellization is implemented for it here). From my personal experience, the parallellized Dijkstra outperforms Floyd-Warshall when processing a 1000 node graph with around 500,000 edges.
