@@ -2,7 +2,7 @@ __author__ = 'Sushant'
 
 from graph import Graph
 import threading
-from priority_dict import PriorityDict
+from prioritydict import PriorityDict
 
 
 class Dijkstra(Graph):
