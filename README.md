@@ -3,6 +3,12 @@ graphene
 
 A Python package for processing graphs, currently supports loading adjacency matrix from csv, shortest paths calculation using Floyd-Warshall and/or a parallelized implementation of Dijkstra's algorithm.
 
+To install change the current working directory to package root, and simply run the following command from a shell prompt.
+
+```bash
+sudo python setup.py install
+```
+
 Examples of usage are provided below.
 
 The file graph.py contains the Graph object.
@@ -10,6 +16,8 @@ The file graph.py contains the Graph object.
 To instantiate a Graph object and add details about nodes:
 
 ```python
+from graphene.graph import Graph
+
 G = Graph()
 
 G.add_node(node_id=1, node_label="a")
@@ -36,6 +44,8 @@ G.load_adjacency_matrix_from_csv("path_to_file.csv")
 The classes Dijkstra and FloydWarshall are extended from Graph as the base class, so the same syntax for graph loading as shown above can be used.
 
 ```python
+from graphene.dijkstra import Dijkstra
+
 D = Dijkstra(num_threads=8)
 ```
 If the num_threads parameter is not specified, it defaults to zero, essentially making the application a single threaded one. I would recommend using as many threads as there are processor cores.
@@ -62,6 +72,8 @@ print D.get_shortest_path_length(source_id, target_id)
 The Floyd-Warshall algorithm for finding the shortest paths between all node pairs within a graph is implemented through the FloydWarshall class which is also derived from the Graph base class.
 
 ```python
+from graphene.floydwarshall import FloydWarshall
+
 F = FloydWarshall() #instantiate the object
 ```
 
