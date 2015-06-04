@@ -89,3 +89,10 @@ The shortest path length between source node and target node can be found as suc
 print F.get_shortest_path_length(source_id , target_id)
 ```
 It is important to note that the Floyd-Warshall algorithm does not keep track of the shortest route (i.e. the nodes encountered on the shortest path) instead it concerns itself with only calculating the shortest path length. Further, it is an iterative algorithm with poor support for parallellization (hence no parallellization is implemented for it here). From my personal experience, the parallellized Dijkstra outperforms Floyd-Warshall when processing a 1000 node graph with around 500,000 edges.
+
+Now Graphene also supports calculation of cluster cohesion indices, currently only the E-I index is supported.
+
+```python
+from graphene.clusterindices import ClusterIndices
+ei_index = ClusterIndices.calculate_EI_index(graph=G, cluster_nodes=cluster_indices)
+```
